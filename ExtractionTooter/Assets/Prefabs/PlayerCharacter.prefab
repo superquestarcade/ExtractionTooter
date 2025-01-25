@@ -67,6 +67,8 @@ GameObject:
   - component: {fileID: 1184685662482112587}
   - component: {fileID: 4181197873861664812}
   - component: {fileID: 2380273263546940798}
+  - component: {fileID: 2837302019887889624}
+  - component: {fileID: 2487506599061224502}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -117,9 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugLevel: 0
-  minMoveSpeed: 5
-  maxMoveSpeed: 20
-  moveHoldDuration: 3
+  rb: {fileID: 2487506599061224502}
+  minMoveSpeed: 100
+  maxMoveSpeed: 1000
+  moveHoldDuration: 1.5
 --- !u!114 &2380273263546940798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,12 +137,75 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugLevel: 0
   animator: {fileID: 6959492250946046929}
-  characterController: {fileID: 4181197873861664812}
+  playerController: {fileID: 4181197873861664812}
   moveHorizontalParamName: MoveH
   moveVerticalParamName: MoveV
   moveStartParamName: MoveStart
   moveCompleteParamName: MoveComplete
   speedParamName: Speed
+--- !u!58 &2837302019887889624
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657780133489528807}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+--- !u!50 &2487506599061224502
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657780133489528807}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 1
+  m_AngularDamping: 5
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &2960089458624296777
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +304,7 @@ GameObject:
   - component: {fileID: 8982081815934861716}
   - component: {fileID: 180005062353700194}
   - component: {fileID: 5561873009007808920}
+  - component: {fileID: 3950010302263634669}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -319,3 +386,23 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4140701220160938984}
   m_Enabled: 1
+--- !u!114 &3950010302263634669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140701220160938984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04478292057542328428c4a21a3b900f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugLevel: 0
+  characterController: {fileID: 4181197873861664812}
+  playerCamera: {fileID: 180005062353700194}
+  zoomSpeedFactor: 1
+  zoomMin: 5
+  zoomMax: 20
+  zoomDamping: 0.5
+  zoomReturnDelay: 5

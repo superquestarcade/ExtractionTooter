@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace Player
 {
-	public class CharacterController : MonoBehaviourPlus
+	public class PlayerController : MonoBehaviourPlus
 	{
+		[SerializeField] private Rigidbody2D rb;
 		[SerializeField] private float minMoveSpeed = 2f;
 		[SerializeField] private float maxMoveSpeed = 5f;
 		[SerializeField] private float moveHoldDuration = 3f;
@@ -54,20 +55,22 @@ namespace Player
 		
 		private void UpdateMovement()
 		{
-			if (velocity.magnitude <= 0.001)
-			{
-				velocity = Vector2.zero;
-				return;
-			}
-			velocity += -velocity * 0.01f;
-			transform.position += (Vector3) velocity * Time.deltaTime;
-			OnSetSpeed?.Invoke(velocity.magnitude);
+			// if (velocity.magnitude <= 0.001)
+			// {
+			// 	velocity = Vector2.zero;
+			// 	return;
+			// }
+			// velocity += -velocity * 0.01f;
+			// transform.position += (Vector3) velocity * Time.deltaTime;
+			// OnSetSpeed?.Invoke(velocity.magnitude);
+			OnSetSpeed?.Invoke(rb.linearVelocity.magnitude);
 		}
 
 		private void Move(float _value)
 		{
 			speed = Mathf.Lerp(minMoveSpeed, maxMoveSpeed, _value);
-			velocity = direction.normalized * speed;
+			rb.AddForce(direction.normalized * speed);
+			// velocity = direction.normalized * speed;
 			OnMoveComplete?.Invoke();
 		}
 

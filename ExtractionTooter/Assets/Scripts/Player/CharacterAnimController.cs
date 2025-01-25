@@ -1,42 +1,43 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player
 {
 	public class CharacterAnimController : MonoBehaviourPlus
 	{
 		[SerializeField] private Animator animator;
-		[SerializeField] private CharacterController characterController;
+		[SerializeField] private PlayerController playerController;
 		[SerializeField] private string moveHorizontalParamName = "MoveH";
 		[SerializeField] private string moveVerticalParamName = "MoveV";
-		[SerializeField] private string moveStartParamName = "MoveStart";
-		[SerializeField] private string moveCompleteParamName = "MoveComplete";
+		[SerializeField] private string boostParamName = "Boost";
+		// [SerializeField] private string moveCompleteParamName = "MoveComplete";
 		[SerializeField] private string speedParamName = "Speed";
 
 		private void Start()
 		{
-			characterController.OnLook += Look;
-			characterController.OnMoveStart += MoveStart;
-			characterController.OnMoveComplete += MoveComplete;
-			characterController.OnSetSpeed += Speed;
+			playerController.OnLook += Look;
+			playerController.OnMoveStart += MoveStart;
+			playerController.OnMoveComplete += MoveComplete;
+			playerController.OnSetSpeed += Speed;
 		}
 		
 		private void OnDestroy()
 		{
-			characterController.OnLook -= Look;
-			characterController.OnMoveStart -= MoveStart;
-			characterController.OnMoveComplete -= MoveComplete;
-			characterController.OnSetSpeed -= Speed;
+			playerController.OnLook -= Look;
+			playerController.OnMoveStart -= MoveStart;
+			playerController.OnMoveComplete -= MoveComplete;
+			playerController.OnSetSpeed -= Speed;
 		}
 		
 		private void MoveStart()
 		{
-			animator.SetTrigger(moveStartParamName);
+			animator.SetBool(boostParamName, true);
 		}
 
 		private void MoveComplete()
 		{
-			animator.SetTrigger(moveCompleteParamName);
+			animator.SetBool(boostParamName, false);
 		}
 
 		private void Look(Vector2 _direction)
