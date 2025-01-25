@@ -41,6 +41,7 @@ namespace Player
 
 		private void Look(Vector2 _direction)
 		{
+			Debug.Log($"CharacterAnimController.Look {_direction}");
 			animator.SetFloat(moveHorizontalParamName, _direction.x);
 			animator.SetFloat(moveVerticalParamName, _direction.y);
 		}

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LookUp
+  m_Name: LookR
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -30,6 +30,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 0.016666668
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -42,7 +51,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -5392330207066819739, guid: e9bcba8938f2f9c42ae50fbd4e7a043e, type: 3}
+      value: {fileID: -1635509097535599837, guid: e9bcba8938f2f9c42ae50fbd4e7a043e, type: 3}
     attribute: m_Sprite
     path: CharacterSprite
     classID: 212
@@ -74,7 +83,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -5392330207066819739, guid: e9bcba8938f2f9c42ae50fbd4e7a043e, type: 3}
+    - {fileID: -1635509097535599837, guid: e9bcba8938f2f9c42ae50fbd4e7a043e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -102,6 +111,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.016666668
         value: 0
         inSlope: Infinity
         outSlope: Infinity

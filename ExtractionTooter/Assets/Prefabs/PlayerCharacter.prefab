@@ -116,8 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugLevel: 0
-  minMoveSpeed: 2
-  maxMoveSpeed: 5
+  minMoveSpeed: 5
+  maxMoveSpeed: 20
+  moveHoldDuration: 3
 --- !u!114 &2380273263546940798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +215,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -8046482631059750677, guid: e9bcba8938f2f9c42ae50fbd4e7a043e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
