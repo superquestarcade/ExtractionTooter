@@ -13,6 +13,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void EndGame()
     {
-        
+        SceneManager.LoadScene(mainMenuScene);
     }
 }

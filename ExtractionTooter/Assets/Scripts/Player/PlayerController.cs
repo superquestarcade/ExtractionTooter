@@ -11,6 +11,7 @@ namespace Player
 		[SerializeField] private float maxMoveSpeed = 5f;
 		[SerializeField] private float moveHoldDuration = 3f;
 
+		private bool controlActive = true;
 		private bool moveHoldActive;
 		private float moveTimer;
 
@@ -55,14 +56,6 @@ namespace Player
 		
 		private void UpdateMovement()
 		{
-			// if (velocity.magnitude <= 0.001)
-			// {
-			// 	velocity = Vector2.zero;
-			// 	return;
-			// }
-			// velocity += -velocity * 0.01f;
-			// transform.position += (Vector3) velocity * Time.deltaTime;
-			// OnSetSpeed?.Invoke(velocity.magnitude);
 			OnSetSpeed?.Invoke(rb.linearVelocity.magnitude);
 		}
 
@@ -70,19 +63,38 @@ namespace Player
 		{
 			speed = Mathf.Lerp(minMoveSpeed, maxMoveSpeed, _value);
 			rb.AddForce(direction.normalized * speed);
-			// velocity = direction.normalized * speed;
 			OnMoveComplete?.Invoke();
+		}
+
+		public void SetControlActive(bool _value)
+		{
+			controlActive = _value;
+			if (!_value)
+			{
+				moveHoldActive = false;
+				moveTimer = 0;
+				speed = 0;
+			}
+		}
+
+		public void BounceAwayFromDamage(Transform _sourceTransform)
+		{
+			var bounceDir = transform.position - _sourceTransform.position;
+			rb.linearVelocity = Vector3.zero;
+			rb.AddForce(bounceDir.normalized * maxMoveSpeed/2);
 		}
 
 		#region Inputs
 		private void Look(Vector2 _value)
 		{
+			if (!controlActive) return;
 			direction = _value;
 			OnLook?.Invoke(_value);
 		}
 
 		private void MoveStarted()
 		{
+			if (!controlActive) return;
 			moveHoldActive = true;
 			moveTimer = moveHoldDuration;
 			OnMoveStart?.Invoke();
@@ -90,6 +102,7 @@ namespace Player
 
 		private void MoveComplete()
 		{
+			if (!controlActive) return;
 			Move(1-Mathf.Clamp01(moveTimer/moveHoldDuration));
 			moveHoldActive = false;
 			moveTimer = 0;

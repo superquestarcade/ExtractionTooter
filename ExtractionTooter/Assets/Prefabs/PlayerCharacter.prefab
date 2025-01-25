@@ -67,6 +67,8 @@ GameObject:
   - component: {fileID: 1184685662482112587}
   - component: {fileID: 4181197873861664812}
   - component: {fileID: 2380273263546940798}
+  - component: {fileID: 3882063052247903040}
+  - component: {fileID: 793767652915950085}
   - component: {fileID: 2837302019887889624}
   - component: {fileID: 2487506599061224502}
   m_Layer: 0
@@ -138,11 +140,40 @@ MonoBehaviour:
   debugLevel: 0
   animator: {fileID: 6959492250946046929}
   playerController: {fileID: 4181197873861664812}
+  playerHealth: {fileID: 3882063052247903040}
+  damageReciever: {fileID: 793767652915950085}
   moveHorizontalParamName: MoveH
   moveVerticalParamName: MoveV
-  moveStartParamName: MoveStart
-  moveCompleteParamName: MoveComplete
+  boostParamName: Boost
+  deathParamName: Die
   speedParamName: Speed
+--- !u!114 &3882063052247903040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657780133489528807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a69988bfd9c2b4fa5e126dabd46c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 4181197873861664812}
+  startingHealth: 100
+  damageReciever: {fileID: 793767652915950085}
+--- !u!114 &793767652915950085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657780133489528807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d289bdbd4e1424382eed8e99c38624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &2837302019887889624
 CircleCollider2D:
   m_ObjectHideFlags: 0

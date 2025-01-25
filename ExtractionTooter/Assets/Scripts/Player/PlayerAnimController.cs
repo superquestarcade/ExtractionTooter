@@ -4,14 +4,16 @@ using UnityEngine.Serialization;
 
 namespace Player
 {
-	public class CharacterAnimController : MonoBehaviourPlus
+	public class PlayerAnimController : MonoBehaviourPlus
 	{
 		[SerializeField] private Animator animator;
 		[SerializeField] private PlayerController playerController;
+		[SerializeField] private PlayerHealth playerHealth;
+		[SerializeField] private DamageReciever damageReciever;
 		[SerializeField] private string moveHorizontalParamName = "MoveH";
 		[SerializeField] private string moveVerticalParamName = "MoveV";
 		[SerializeField] private string boostParamName = "Boost";
-		// [SerializeField] private string moveCompleteParamName = "MoveComplete";
+		[SerializeField] private string deathParamName = "Die";
 		[SerializeField] private string speedParamName = "Speed";
 
 		private void Start()
@@ -20,14 +22,18 @@ namespace Player
 			playerController.OnMoveStart += MoveStart;
 			playerController.OnMoveComplete += MoveComplete;
 			playerController.OnSetSpeed += Speed;
+			damageReciever.OnTakeDamage += TakeDamage;
+			playerHealth.OnDeath += Die;
 		}
-		
+
 		private void OnDestroy()
 		{
 			playerController.OnLook -= Look;
 			playerController.OnMoveStart -= MoveStart;
 			playerController.OnMoveComplete -= MoveComplete;
 			playerController.OnSetSpeed -= Speed;
+			damageReciever.OnTakeDamage -= TakeDamage;
+			playerHealth.OnDeath -= Die;
 		}
 		
 		private void MoveStart()
@@ -50,6 +56,16 @@ namespace Player
 		private void Speed(float _speed)
 		{
 			animator.SetFloat(speedParamName, _speed);
+		}
+		
+		private void TakeDamage(float _value, Transform _sourceTransform)
+		{
+			
+		}
+		
+		private void Die()
+		{
+			animator.SetTrigger(deathParamName);
 		}
 	}
 }
