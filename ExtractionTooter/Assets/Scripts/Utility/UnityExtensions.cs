@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ARP
+namespace UnityEngine
 {
 	public static class UnityExtensions
 	{

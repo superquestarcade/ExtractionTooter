@@ -27,8 +27,10 @@ public class PlayerHealth : MonoBehaviour
         playerController.BounceAwayFromDamage(_sourceTransform);
         health = Mathf.Clamp(health - _value, 0, startingHealth);
         UiManager.singleton.SetHealth(health/startingHealth);
+        AudioManager.singleton.PlayDamage();
         if (health > 0) return;
         playerController.SetControlActive(false);
+        AudioManager.singleton.PlayDead();
         OnDeath?.Invoke();
         StartCoroutine(DieAfterDelay());
     }

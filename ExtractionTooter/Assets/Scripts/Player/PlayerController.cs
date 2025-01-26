@@ -31,6 +31,7 @@ namespace Player
 			InputManager.singleton.OnLook += Look;
 			InputManager.singleton.OnMoveStart += MoveStarted;
 			InputManager.singleton.OnMoveComplete += MoveComplete;
+			AudioManager.singleton.PlayStart();
 		}
 
 		private void Update()
@@ -63,6 +64,7 @@ namespace Player
 		{
 			speed = Mathf.Lerp(minMoveSpeed, maxMoveSpeed, _value);
 			rb.AddForce(direction.normalized * speed);
+			AudioManager.singleton.PlayMove();
 			OnMoveComplete?.Invoke();
 		}
 
