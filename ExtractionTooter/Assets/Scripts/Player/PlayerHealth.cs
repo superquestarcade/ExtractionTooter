@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Managers;
 using Player;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         health = startingHealth;
+        UiManager.singleton.SetHealth(health/startingHealth);
         damageReciever.OnTakeDamage += TakeDamage;
     }
 
@@ -24,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
     {
         playerController.BounceAwayFromDamage(_sourceTransform);
         health = Mathf.Clamp(health - _value, 0, startingHealth);
+        UiManager.singleton.SetHealth(health/startingHealth);
         if (health > 0) return;
         playerController.SetControlActive(false);
         OnDeath?.Invoke();
